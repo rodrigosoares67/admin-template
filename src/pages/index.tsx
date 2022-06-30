@@ -1,13 +1,11 @@
 import type { NextPage } from 'next'
+import Layout from '../components/template/Layout'
 
 const Home: NextPage = () => {
   return (
-    <div className={`
-      flex justify-center items-center h-screen
-      bg-gradient-to-r from-green-500 to-blue-500
-    `}>
-      <h1>Teste</h1>
-    </div>
+    <Layout titulo="Página Inicial" subtitulo="Estamos construindo um template Admin!">
+      <h3>Conteúdo</h3>
+    </Layout>
   )
 }
 
