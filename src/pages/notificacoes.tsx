@@ -3,11 +3,12 @@ import Layout from '../components/template/Layout'
 import useAppData from '../data/hook/useAppData'
 
 const Notificacoes: NextPage = () => {
-  const ctx = useAppData()
+  const { tema, alternarTema } = useAppData()
 
   return (
     <Layout titulo="Notificações" subtitulo="Aqui você irá gerenciar suas notificações">
-      <button onClick={ctx.alternarTema}>Alternar Tema</button>
+      <h3>{tema}</h3>
+      <button onClick={alternarTema}>Alternar Tema</button>
     </Layout>
   )
 }
