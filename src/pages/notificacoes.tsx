@@ -8,7 +8,7 @@ const Notificacoes: NextPage = () => {
   return (
     <Layout titulo="Notificações" subtitulo="Aqui você irá gerenciar suas notificações">
       <h3>{tema}</h3>
-      <button onClick={alternarTema}>Alternar Tema</button>
+      <h1>Notificações</h1>
     </Layout>
   )
 }
