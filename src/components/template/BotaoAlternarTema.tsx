@@ -2,12 +2,12 @@ import { IconeLua, IconeSol } from "../icons"
 
 interface BotaoAlternarTemaProps {
   tema: string
-  alterarTema: () => void
+  alternarTema: () => void
 }
 
 export default function BotaoAlternarTema(props: BotaoAlternarTemaProps){
   return props.tema === 'dark' ? (
-    <div onClick={props.alterarTema} className={`
+    <div onClick={props.alternarTema} className={`
       hidden sm:flex items-center cursor-pointer
       bg-gradient-to-r from-yellow-300 to-yellow-600
       w-14 lg:w-24 h-8 p-1 rounded-full
@@ -26,7 +26,7 @@ export default function BotaoAlternarTema(props: BotaoAlternarTemaProps){
       </div>
     </div>
   ) : (
-    <div onClick={props.alterarTema} className={`
+    <div onClick={props.alternarTema} className={`
       hidden sm:flex items-center justify-end cursor-pointer
       bg-gradient-to-r from-gray-500 to-gray-900
       w-14 lg:w-24 h-8 p-1 rounded-full
