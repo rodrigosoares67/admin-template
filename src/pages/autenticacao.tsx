@@ -1,16 +1,31 @@
 import { useState } from "react";
 import AuthInput from "../components/auth/AuthInput";
+import { IconeAtencao } from "../components/icons";
+import useAuth from "../data/hook/useAuth";
 
 export default function Autenticacao() {
+
+  const { cadastrar, login, loginGoogle } = useAuth()
+
+  const [erro, setErro] = useState(null)
   const [modo, setModo] = useState<'login' | 'cadastro'>('login')
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
 
-  function submeter(){
-    if(modo === 'login'){
-      console.log('Login')
-    } else {
-      console.log('cadastrar')
+  function exibirErro(msg, tempoEmSegundos = 5) {
+    setErro(msg)
+    setTimeout(() => setErro(null), tempoEmSegundos * 1000)
+  }
+
+  async function submeter(){
+    try {
+      if (modo === 'login') {
+        await login(email, senha)
+      } else {
+        await cadastrar(email, senha)
+      }
+    } catch(e) {
+      exibirErro(e?.message ?? 'Erro desconhecido!')
     }
   }
 
@@ -32,6 +47,18 @@ export default function Autenticacao() {
         `}>
           {modo === 'login' ? 'Entre com a sua conta' : 'Cadastre-se na plataforma'}
         </h1>
+
+        {erro ? (
+          <div className={`
+            flex items-center
+            bg-red-400 text-white py-3 px-5 my-2
+            border border-red-700 rounded-lg
+          `}>
+            {IconeAtencao()}
+            <span className="ml-3">{erro}</span>
+          </div>
+        ) : false}
+        
         <AuthInput 
           label="E-mail"
           tipo="email"
@@ -58,7 +85,7 @@ export default function Autenticacao() {
           my-6 border-gray-300 w-full
         `} />
 
-        <button onClick={submeter} className={`
+        <button onClick={loginGoogle} className={`
           w-full bg-red-500 hover:bg-red-400
           text-white rounded-lg px-4 py-3
         `}>
